@@ -5,6 +5,7 @@ services:
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./public:/public
+      - ./logs/nginx:/var/log/nginx # ログの出力をマウントしておくが、パフォーマンスに影響があるので必要に応じて外す
     ports:
       - '80:80'
     networks:
