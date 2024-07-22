@@ -41,6 +41,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
+      - ./logs/mysql:/var/log/mysql # ログの出力をマウントしておくが、パフォーマンスに影響があるので必要に応じて外す
     ports:
       - '3306:3306'
     networks:
