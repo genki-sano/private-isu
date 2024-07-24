@@ -34,13 +34,15 @@ services:
 
   mysql:
     image: mysql:8.4
+    user: mysql
     environment:
-      #- "TZ=Asia/Tokyo"
+      - 'TZ=Asia/Tokyo'
       - 'MYSQL_ROOT_HOST=%'
       - 'MYSQL_ROOT_PASSWORD=root'
     volumes:
       - mysql:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
+      - ./etc/mysql/conf.d/my.cnf:/etc/my.cnf # スロークエリログを出力するが、パフォーマンスに影響があるので必要に応じて外す
       - ./logs/mysql:/var/log/mysql # ログの出力をマウントしておくが、パフォーマンスに影響があるので必要に応じて外す
     ports:
       - '3306:3306'
